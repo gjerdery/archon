@@ -2673,7 +2673,13 @@ abstract class Core_Archon
          }
 
          //$result = call_user_func(array($MixinClass, initialize));
-         eval("\$result = {$MixinClass}::initialize();");
+         $myMixinClass = "___{$MixinClass}___";
+         if (!class_exists($myMixinClass)) {
+            eval("class $myMixinClass extends $MixinClass {}");
+         }
+         $mixin = new $myMixinClass;
+         $closure = (new ReflectionMethod($myMixinClass, 'initialize'))->getClosure($mixin);
+         $result = call_user_func($closure->bindTo($this));
       }
    }
    
