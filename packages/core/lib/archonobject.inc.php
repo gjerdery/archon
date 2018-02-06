@@ -10,20 +10,19 @@ abstract class ArchonObject
       $args = func_get_args();
       $MixinClass = prev($methodInfo->Classes);
 
-      $arrStrArgs = array();
-
-      for($i = 0; $i < count($args); $i++)
-      {
-         $arrStrArgs[] = "\$args[{$i}]";
-      }
-
       // Simulate mixing after.
       if($_ARCHON->Mixins[get_class($this)]->Methods[$method]->Parameters[$MixinClass]->MixOrder == MIX_AFTER)
       {
          $prevresult = call_user_func_array(array($this, 'callOverridden'), $args);
       }
 
-      eval("\$result = {$MixinClass}::{$method}(" . implode(',', $arrStrArgs) . ");");
+      $myMixinClass = "___{$MixinClass}___";
+      if (!class_exists($myMixinClass)) {
+         eval("class $myMixinClass extends $MixinClass {}");
+      }
+      $mixin = new $myMixinClass;
+      $closure = (new ReflectionMethod($myMixinClass, $method))->getClosure($mixin);
+      $result = call_user_func_array($closure->bindTo($this), $args);
 
       // Simulate mixing before.
       if($_ARCHON->Mixins[get_class($this)]->Methods[$method]->Parameters[$MixinClass]->MixOrder == MIX_BEFORE)
@@ -235,21 +234,20 @@ abstract class ArchonObject
          $_ARCHON->Callstack[] = $stackmember;
          $MixinClass = end(end($_ARCHON->Callstack)->Classes);
 
-         $arrStrArgs = array();
-
-         for($i = 0; $i < count($args); $i++)
-         {
-            $arrStrArgs[] = "\$args[{$i}]";
-         }
-
          // Simulate mixing after.
          if($_ARCHON->Mixins[get_class($this)]->Methods[$method]->Parameters[$MixinClass]->MixOrder == MIX_AFTER)
          {
             $prevresult = call_user_func_array(array($this, 'callOverridden'), $args);
          }
 
-         eval("\$result = {$MixinClass}::{$method}(" . implode(',', $arrStrArgs) . ");");
          //$result = call_user_func_array(array(($MixinClass) $this, $method), $args);
+	 $myMixinClass = "___{$MixinClass}___";
+	 if (!class_exists($myMixinClass)) {
+            eval("class $myMixinClass extends $MixinClass {}");
+         }
+         $mixin = new $myMixinClass;
+         $closure = (new ReflectionMethod($myMixinClass, $method))->getClosure($mixin);
+         $result = call_user_func_array($closure->bindTo($this), $args);
 
          // Simulate mixing before.
          if($_ARCHON->Mixins[get_class($this)]->Methods[$method]->Parameters[$MixinClass]->MixOrder == MIX_BEFORE)
