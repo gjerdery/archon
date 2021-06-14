@@ -83,7 +83,7 @@ function digitallibrary_search()
             </span> (<span id='DigitalContentCount'><?php echo(count($arrDigitalContent)); ?></span> <?php echo($strMatches); ?>)<br/>
             <dl id='DigitalContentResults' style='display: none;'>
 <?php
-         if(!empty($arrImageContent))
+         /*if(!empty($arrImageContent))
          {
             $thumbsURL = 'index.php?p=digitallibrary/thumbnails';
             if($_ARCHON->QueryString)
@@ -101,6 +101,7 @@ function digitallibrary_search()
             if(defined('PACKAGE_SUBJECTS') && $in_SubjectID)
             {
                $thumbsURL .= '&amp;subjectid=' . $in_SubjectID;
+               echo("<dt>Test: $in_SubjectID</dt>\n");
             }
             if(defined('PACKAGE_CREATORS') && $in_CreatorID)
             {
@@ -113,7 +114,7 @@ function digitallibrary_search()
             $strNumThumbnails = $objNumThumbnailsPhrase ? $objNumThumbnailsPhrase->getPhraseValue(ENCODE_HTML) : '$1 or more images found';
 
             echo("<dt><a href='$thumbsURL'>$strSearchThumbnails</a> (" . str_replace('$1', count($arrImageContent), $strNumThumbnails) . ")</dt>\n");
-         }
+         }*/
 
          foreach($arrDigitalContent as $objDigitalContent)
          {

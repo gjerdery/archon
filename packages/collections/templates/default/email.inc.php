@@ -22,11 +22,17 @@ echo("<h1 id='titleheader'>" . strip_tags($_ARCHON->PublicInterface->Title) . "<
 
 
 <div class="userformbox bground">
-
+      
+      
   <p class="bold"><?php echo($_ARCHON->PublicInterface->Title); ?></p>
+  
+  <p>In response to the partial campus closure beginning March 18, the Luther College Archives will continue to provide reference and research assistance virtually.</p>
+
+<p>The Reading Room will be closed to the public and drop-in visitors. The archivist will make reasonable accommodations to provide scans of archival documents as needed, providing the originals are stable enough for reproduction. Faculty, staff, and administrators needing to access physical files in the course of their work may make an appointment to visit the Reading Room, or have select files sent to them by email or campus mail.</p>
+
       Fields marked with an asterisk (<span style="color:red">*</span>) are required.
       
-  <div class="userformpair">
+ <div class="userformpair">
     <label for="name"><?php echo($strFromName); ?>:</label><br/>
     <input type="text" name="FromName" id="name" size="30" value="<?php echo($strName); ?>" />
   </div>
@@ -48,7 +54,7 @@ echo("<h1 id='titleheader'>" . strip_tags($_ARCHON->PublicInterface->Title) . "<
   </div>
   <div id="userformsubmit">
     <input type="submit" value="<?php echo($strSendEmail); ?>" class="button" />
-  </div>
+  </div> 
   
 </div>
 

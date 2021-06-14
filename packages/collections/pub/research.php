@@ -229,7 +229,7 @@ function research_email()
          <input type="hidden" name="f" value="sendemails" />
          <input type="hidden" name="p" value="collections/research" />
           <?php // $in_referer and $query_string are sanitized for XSS at assignment ?>
-         <input type="hidden" name="referer" value="<?php echo($in_referer); ?>" />
+        <input type="hidden" name="referer" value="<?php //echo($in_referer); ?>" /> 
          <input type="hidden" name="query_string" value="<?php echo($query_string); ?>" />
 
       </div>
