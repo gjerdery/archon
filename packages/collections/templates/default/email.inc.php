@@ -26,9 +26,7 @@ echo("<h1 id='titleheader'>" . strip_tags($_ARCHON->PublicInterface->Title) . "<
       
   <p class="bold"><?php echo($_ARCHON->PublicInterface->Title); ?></p>
   
-  <p>In response to the partial campus closure beginning March 18, the Luther College Archives will continue to provide reference and research assistance virtually.</p>
-
-<p>The Reading Room will be closed to the public and drop-in visitors. The archivist will make reasonable accommodations to provide scans of archival documents as needed, providing the originals are stable enough for reproduction. Faculty, staff, and administrators needing to access physical files in the course of their work may make an appointment to visit the Reading Room, or have select files sent to them by email or campus mail.</p>
+  <p>The Archives are open by appointment; please contact the archivist to make arrangements for your visit.</p>
 
       Fields marked with an asterisk (<span style="color:red">*</span>) are required.
       
